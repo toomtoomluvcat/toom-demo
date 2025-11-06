@@ -1,0 +1,17 @@
+.container {
+  background-color: aqua;
+  height: 100vh;
+  border: 2px solid red;
+}
+.icon {
+  transform: translate(0, 100px);
+  display: flex;
+  justify-content: center;
+  z-index: 0;
+}
+.paper_content {
+  position: relative;
+  border-radius: 50px;
+  z-index: 1;
+  padding: 15px;
+}

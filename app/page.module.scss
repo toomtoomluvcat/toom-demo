@@ -1,0 +1,36 @@
+$breakpoint: (
+  xs: 480px,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280,
+);
+
+@mixin up($p) {
+  @media (min-width: map-get($breakpoint,$p)) {
+    @content;
+  }
+}
+
+@mixin down($p) {
+  @media (min-width: map-get($breakpoint,$p)) {
+    @content;
+  }
+}
+
+.blog {
+  width: 40px;
+  height: 40px;
+  background-color: var(--mantine-color-red-6);
+  margin-inline: auto;
+  margin-top: 100px;
+  transition: background-color 1s ease-in-out;
+
+  @include up(md) {
+    background-color: var(--mantine-color-blue-6);
+  }
+
+  @include up(lg) {
+    background-color: var(--mantine-color-green-6);
+  }
+}
