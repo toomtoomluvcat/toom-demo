@@ -1,12 +1,11 @@
 "use client";
 
-import { usePopup } from "@/app/Context/Popup/usePopup";
-import React from "react";
+import Toggle from "@/app/Context/Modal/inner/toggle";
 
 function page() {
   return (
     <div>
-      <p>Hello layout</p>
+      <Toggle></Toggle>
     </div>
   );
 }
