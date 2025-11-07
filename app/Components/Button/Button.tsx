@@ -1,6 +1,6 @@
 "use client";
 
-import { usePopup } from "@/app/context/Popup/usePopup";
+import { usePopup } from "@/app/Context/Popup/usePopup";
 import React from "react";
 
 function Button() {

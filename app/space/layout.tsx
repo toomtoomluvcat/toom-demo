@@ -2,7 +2,7 @@
 
 import { ReactNode, useState } from "react";
 import Popup from "../Components/Popup/Popup";
-import PopupProvider from "../context/Popup/PopupProvider";
+import PopupProvider from "../Context/Popup/PopupProvider";
 import Button from "../Components/Button/Button";
 interface layoutProps {
   children: ReactNode;
