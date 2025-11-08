@@ -6,17 +6,14 @@ import ModalProvider from "../Context/Modal/ModalProvider";
 import { useModal } from "../Context/Modal/useModal";
 import { Box, Button } from "@mantine/core";
 import Click from "../Context/Modal/inner/click";
+import Show from "../Context/Modal/inner/Show";
 interface layoutProps {
   children: ReactNode;
 }
-
 function layout({ children }: layoutProps) {
   return (
     <div>
-      <ModalProvider>
-        <ModalBlog>{children}</ModalBlog>
-        <Click></Click>
-      </ModalProvider>
+      <ModalProvider>{children}</ModalProvider>
     </div>
   );
 }

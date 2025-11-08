@@ -3,11 +3,15 @@
 import { Button } from "@mantine/core";
 import { useModal } from "../useModal";
 
-function Click() {
-  const { opened, close, open } = useModal();
+interface ClickProps {
+  Id?: string;
+}
+
+function Click({ Id = "1" }: ClickProps) {
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
-    <Button variant="default" onClick={open}>
+    <Button variant="default" onClick={() => openModal(Id)}>
       Open modal
     </Button>
   );

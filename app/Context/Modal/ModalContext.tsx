@@ -2,12 +2,16 @@
 
 import { createContext } from "react";
 
-export interface ContextTypeProps {
+export interface ModalInstance {
   opened: boolean;
-  open: () => void;
   close: () => void;
+  open: () => void;
 }
-
+export interface ContextTypeProps {
+  openModal: (id: string) => void;
+  closeModal: (id: string) => void;
+  isModalOpen: (id: string) => boolean;
+}
 export const ModalContext = createContext<ContextTypeProps | undefined>(
   undefined
 );

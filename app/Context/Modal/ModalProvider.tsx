@@ -1,15 +1,33 @@
 "use client";
 
-import { useDisclosure } from "@mantine/hooks";
-import { ReactNode } from "react";
+import { ReactNode, useCallback, useMemo, useState } from "react";
 import { ModalContext } from "./ModalContext";
 
 function ModalProvider({ children }: { children: ReactNode }) {
-  const [opened, { open, close }] = useDisclosure(false);
+  const [openMap, setOpenMap] = useState<Record<string, boolean>>({});
+
+  const openModal = useCallback((ModalId: string) => {
+    setOpenMap((prev) => ({ ...prev, [ModalId]: true }));
+  }, []);
+
+  const closeModal = useCallback((ModalId: string) => {
+    setOpenMap((prev) => ({ ...prev, [ModalId]: false }));
+  }, []);
+
+  const isModalOpen = useCallback(
+    (ModalId: string): boolean => {
+      return !!openMap[ModalId];
+    },
+    [openMap]
+  );
+
+  const value = useMemo(
+    () => ({ isModalOpen, openModal, closeModal }),
+    [isModalOpen, openModal, closeModal]
+  );
+
   return (
-    <ModalContext.Provider value={{ opened, open, close }}>
-      {children}
-    </ModalContext.Provider>
+    <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
   );
 }
 

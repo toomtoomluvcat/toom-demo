@@ -1,20 +1,27 @@
 "use client";
-import { Box, Button, Modal } from "@mantine/core";
+import { Modal } from "@mantine/core";
+import { Children, cloneElement, isValidElement, ReactNode } from "react";
 import { useModal } from "./useModal";
-import { ReactNode } from "react";
 
-function ModalBlog({ children }: { children: ReactNode }) {
+interface ModalBlogProps {
+  children: ReactNode;
+  Id?: string;
+}
+
+function ModalBlog({ children, Id = "1" }: ModalBlogProps) {
+  const { isModalOpen, closeModal } = useModal();
+
+  const childrenWithProps = Children.map(children, (child) => {
+    if (isValidElement(child)) {
+      return cloneElement(child, { Id: Id } as any);
+    }
+    return child;
+  });
+
   return (
-    <Box>
-      {children}
-      {/* <Modal opened={opened} onClose={close} withCloseButton={false}>
-        Modal without header, press escape or click on overlay to close
-      </Modal>
-
-      <Button variant="default" onClick={open}>
-        Open modal
-      </Button> */}
-    </Box>
+    <Modal opened={isModalOpen(Id)} onClose={() => closeModal(Id)}>
+      {childrenWithProps}
+    </Modal>
   );
 }
 
